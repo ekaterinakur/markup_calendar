@@ -1,4 +1,15 @@
+$week-days: (
+    mon: 1,
+    tue: 2,
+    wed: 3,
+    thu: 4,
+    fri: 5,
+    sat: 6,
+    sun: 7
+);
+
 body {
+    margin: 0;
     font-family: Arial, sans-serif;
     font-size: 30px;
     
@@ -18,39 +29,29 @@ body {
             border: 1px solid black;
             transition: background-color 0.5s, transform 0.5s;
             display: none;
-        }
-
-        div:hover {
-            background-color: pink;
-            transform: translateY(-20px);
-            cursor: pointer;
-        }
-
         
+            &:hover {
+                background-color: pink;
+                transform: translateY(-20px);
+                cursor: pointer;
+            }
+        }
     }
 }
 
-@for $month-days from 1 through 31 {
+@for $month-days from 28 through 31 {
     @for $month-day from 1 through $month-days {
         div.calendar-#{$month-days} div:nth-child(#{$month-day}){
             display: block;
-        }
-
-        div.calendar-#{$month-days} div:nth-child(#{$month-day})::after {
-            content: "#{$month-day}";
+        
+            &::after {
+                content: "#{$month-day}";
+            }
         }
     }
 }
 
-$week-days: (
-    mon: 1,
-    tue: 2,
-    wed: 3,
-    thu: 4,
-    fri: 5,
-    sat: 6,
-    sun: 7
-);
+
 
 @each $week-day, $num-day in $week-days {
     div.calendar-#{$week-day} div:first-child {
